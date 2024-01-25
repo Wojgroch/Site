@@ -37,18 +37,20 @@
             // Send the text and selected column to the Google Sheets Web App
             fetch('https://script.google.com/macros/s/AKfycbyDYBi9F2zmcsCdyZ4nqH354z4MDyh7AP4djG3izp--DEJY-TQFbPmoiJB_GmQsYJKn/exec', {
                 method: 'POST',
-                mode: 'no-cors', // Set mode to 'no-cors'
+                mode: 'cors', // Set mode to 'cors'
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: 'text=' + textValue + '&column=' + selectedColumn,
-            })
-            .then(() => {
-                console.log('Request successful (no response available due to no-cors mode)');
-            })
-            .catch(error => {
+                body: 'text=' + textValue,
+                })
+                .then(response => response.text())
+                .then(data => {
+                console.log(data);
+
+                })
+                .catch(error => {
                 console.error('Error submitting text:', error);
-            });
+                });
 
             // Keep the focus on the text input for the next entry
             textInput.focus();
