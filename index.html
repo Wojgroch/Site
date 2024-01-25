@@ -3,32 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Number Input</title>
+    <title>Text Input</title>
 </head>
 <body>
-    <label for="numberInput">Enter a Number:</label>
-    <input type="number" id="numberInput">
-    <button onclick="submitNumber()">Submit</button>
+    <label for="textInput">Enter Text:</label>
+    <input type="text" id="textInput">
+    <button onclick="submitText()">Submit</button>
 
     <script>
-        function submitNumber() {
-            var numberInput = document.getElementById('numberInput').value;
+        function submitText() {
+            var textInput = document.getElementById('textInput').value;
 
-            // Send the number to the Google Sheets Web App
-            fetch('YOUR_WEB_APP_URL', {
+            // Send the text to the Google Sheets Web App
+            fetch('https://script.google.com/macros/s/AKfycbzXeXS8Dky4AHCkIxcY1wU5O_gbZW9B5NlG7EG1UP7_h8Gg3g5cBs1IPpTrFDguGAPf/exec', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: 'number=' + numberInput,
+                body: 'text=' + textInput,
             })
             .then(response => response.text())
             .then(data => {
                 console.log(data);
-                alert('Number added successfully!');
+                alert('Text added successfully!');
             })
             .catch(error => {
-                console.error('Error adding number:', error);
+                console.error('Error adding text:', error);
             });
         }
     </script>
