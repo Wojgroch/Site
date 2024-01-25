@@ -27,6 +27,7 @@
             .then(() => {
                 console.log('Request successful (no response available due to no-cors mode)');
                 alert('Text submitted successfully!');
+                textInput.value = "";
             })
             .catch(error => {
                 console.error('Error submitting text:', error);
