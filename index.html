@@ -21,6 +21,9 @@
             var textInput = document.getElementById('textInput');
             var textValue = textInput.value;
 
+            // Clear the input box before making the fetch request
+            textInput.value = '';
+
             // Send the text to the Google Sheets Web App
             fetch('https://script.google.com/macros/s/AKfycbyDYBi9F2zmcsCdyZ4nqH354z4MDyh7AP4djG3izp--DEJY-TQFbPmoiJB_GmQsYJKn/exec', {
                 method: 'POST',
@@ -32,16 +35,13 @@
             })
             .then(() => {
                 console.log('Request successful (no response available due to no-cors mode)');
-
-                // Clear the input box
-                textInput.value = '';
-
-                // Keep the focus on the text input for the next entry
-                textInput.focus();
             })
             .catch(error => {
                 console.error('Error submitting text:', error);
             });
+
+            // Keep the focus on the text input for the next entry
+            textInput.focus();
 
             // Prevent the form from actually submitting (since we're handling it via fetch)
             return false;
