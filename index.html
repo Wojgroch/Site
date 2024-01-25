@@ -8,12 +8,13 @@
 <body>
     <form id="myForm">
         <label for="textInput">Enter Text:</label>
-        <input type="text" id="textInput" onkeydown="if(event.key==='Enter'){return submitText();}">
+        <input type="text" id="textInput" onkeydown="if(event.key==='Enter'){submitText();}">
     </form>
 
     <script>
         function submitText() {
-            var textInput = document.getElementById('textInput').value;
+            var textInput = document.getElementById('textInput');
+            var textValue = textInput.value;
 
             // Send the text to the Google Sheets Web App
             fetch('https://script.google.com/macros/s/AKfycbyDYBi9F2zmcsCdyZ4nqH354z4MDyh7AP4djG3izp--DEJY-TQFbPmoiJB_GmQsYJKn/exec', {
@@ -22,11 +23,13 @@
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded',
                 },
-                body: 'text=' + textInput,
+                body: 'text=' + textValue,
             })
             .then(() => {
                 console.log('Request successful (no response available due to no-cors mode)');
                 alert('Text submitted successfully!');
+
+                // Clear the input box
                 textInput.value = "";
             })
             .catch(error => {
