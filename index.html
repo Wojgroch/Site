@@ -37,7 +37,7 @@
             // Send the text and selected column to the Google Sheets Web App
             fetch('https://script.google.com/macros/s/AKfycbwDWINu0TQW78o1GtzIFpRh24fuYFcOMCM4r-_Q_J28CvnCdqE04-JA5bB7i4fHPRks/exec', {
                 method: 'POST',
-                mode: 'cors', // Set mode to 'cors'
+                mode: 'no-cors', // Set mode to 'cors'
                 headers: {
                     'Content-Type': 'application/json',
                     'Access-Control-Allow-Origin': '*',
